@@ -1,2 +1,3 @@
-# viendesu-ts
-TypeScript library for API interactions with the VienDesu! project
+# VienDesu! TypeScript
+
+TypeScript wrapper for [VienDesu!](https://viende.su/) website API.
