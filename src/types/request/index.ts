@@ -11,7 +11,12 @@ abstract class Payload<D> {
     abstract toJSON(): Object;
 }
 
-abstract class BaseRequest<D, P extends Payload<D>, S extends SecurityRequirement = SecurityRequirement> {
+abstract class BaseRequest<
+    D,
+    ResponseTp,
+    P extends Payload<D>,
+    S extends SecurityRequirement = SecurityRequirement,
+> {
     payload: P
     security: S
 
@@ -19,6 +24,8 @@ abstract class BaseRequest<D, P extends Payload<D>, S extends SecurityRequiremen
         this.payload = payload;
         this.security = security;
     }
+
+    abstract intoResponse(obj: any): ResponseTp;
 }
 
 export {
