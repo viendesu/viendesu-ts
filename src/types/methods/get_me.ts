@@ -14,4 +14,3 @@ export class GetMe extends BaseRequest<User, Payload, Token> {
         return parseUser(obj)
     }
 }
-

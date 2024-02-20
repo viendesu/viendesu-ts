@@ -12,13 +12,16 @@ enum HttpMethod {
 interface HeadersMap {
     [name: string]: string
 }
+interface FilesMap {
+    [name: string]: File
+}
 
 interface RestMetaInfo {
     method: HttpMethod
     path: string
 
     headers?: HeadersMap,
-    multipart?: boolean,
+    files?: FilesMap,
     body?: Object
 }
 
@@ -45,8 +48,10 @@ export {
     Payload,
     BaseRequest,
 
-    RestMetaInfo,
     HeadersMap,
+    FilesMap,
+
+    RestMetaInfo,
     HttpMethod,
 }
 

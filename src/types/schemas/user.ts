@@ -1,4 +1,4 @@
-import { FileId } from "./file_id";
+import { FileId } from "../types/file_id";
 
 export enum Role {
     Owner,
