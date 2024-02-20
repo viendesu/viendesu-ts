@@ -1,4 +1,11 @@
-import { AuthorizedVienDesu } from "./authorized";
-import { VienDesu } from "./unauthorized";
+import { Session } from "../abstract/session";
 
-export { AuthorizedVienDesu, VienDesu }
+class VienDesu {
+    session: Session;
+
+    constructor(session: Session) {
+        this.session = session;
+    }
+}
+
+export { VienDesu }

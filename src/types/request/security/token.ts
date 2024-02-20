@@ -1,6 +1,9 @@
-/** Api token, either refresh or access */
-interface Token {
-    token: string;
+import { SecurityRequirement } from ".";
+
+interface TokenOr<T> extends SecurityRequirement {
+    token: string | T;
 }
 
-export { Token }
+type Token = TokenOr<string>;
+
+export { TokenOr, Token }

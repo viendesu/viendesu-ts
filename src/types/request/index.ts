@@ -1,21 +1,33 @@
-import { SecurityRequirement } from "./security";
+import { SecurityRequirement } from "./security"
+import { TokenOr } from "./security/token"
 
-abstract class Payload<D> {
-    data: D
-
-    constructor(data: D) {
-        this.data = data;
-    }
-
-    /** Convert data to JSON serializable object */
-    abstract toJSON(): Object;
+enum HttpMethod {
+    Get,
+    Post,
+    Put,
+    Patch,
+    Delete,
 }
 
+interface HeadersMap {
+    [name: string]: string
+}
+
+interface RestMetaInfo {
+    method: HttpMethod
+    path: string
+
+    headers?: HeadersMap,
+    multipart?: boolean,
+    body?: Object
+}
+
+interface Payload {}
+
 abstract class BaseRequest<
-    D,
     ResponseTp,
-    P extends Payload<D>,
-    S extends SecurityRequirement = SecurityRequirement,
+    P extends Payload = Payload,
+    S extends SecurityRequirement = TokenOr<null>,
 > {
     payload: P
     security: S
@@ -25,11 +37,16 @@ abstract class BaseRequest<
         this.security = security;
     }
 
+    abstract getRestMeta(): RestMetaInfo;
     abstract intoResponse(obj: any): ResponseTp;
 }
 
 export {
     Payload,
     BaseRequest,
+
+    RestMetaInfo,
+    HeadersMap,
+    HttpMethod,
 }
 
